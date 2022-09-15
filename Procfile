@@ -1,0 +1,1 @@
+web: gunicorn AppHospital52.wsgi
