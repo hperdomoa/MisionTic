@@ -1,4 +1,4 @@
-from .account import Account
+from .account import Perfil
 from .user import User
 from .ciudad import Ciudad
 from .per_salud import PersonalSalud

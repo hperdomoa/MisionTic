@@ -1,7 +1,7 @@
-from AppHospital52.models.account import Account
+from AppHospital52.models.account import Perfil
 from rest_framework import serializers
 
-class AccountSerializer(serializers.ModelSerializer):
+class PerfilSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Account
-        fields = ['balance', 'lastChangeDate', 'isActive']
+        model = Perfil
+        fields = ['id_perfil','nombre','isActive']

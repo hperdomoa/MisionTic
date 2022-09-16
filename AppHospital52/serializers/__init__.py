@@ -1,4 +1,4 @@
-from .accountSerializer import AccountSerializer
+from .accountSerializer import PerfilSerializer
 from .userSerializer import UserSerializer
 from .ciudadSerializer import CiudadSerializer
 from .pacienteSerializer import PacienteSerializer

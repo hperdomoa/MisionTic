@@ -6,4 +6,4 @@ class CiudadSerializer(serializers.ModelSerializer):
         model = Ciudad
         fields = ['ciudad']
 
-        
+

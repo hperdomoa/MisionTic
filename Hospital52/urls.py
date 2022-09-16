@@ -20,6 +20,7 @@ from AppHospital52 import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('account/', views.GestionPerfil.as_view()),
     path('login/', TokenObtainPairView.as_view()),
     path('refresh/', TokenRefreshView.as_view()),
     path('user/', views.UserCreateView.as_view()),
@@ -29,6 +30,7 @@ urlpatterns = [
     path('familiar/', views.GestionFamiliar.as_view()),
     path('persalud/', views.GestionPerSalud.as_view()),
     path('hisclinica/', views.GestionHisClinica.as_view()),
+
 
     
 

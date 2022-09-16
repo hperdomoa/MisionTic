@@ -11,6 +11,9 @@ class GestionCiudad(views.APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+    
+
+
 
     #def get(self, request, *args, **kwargs):
         #token = request.META.get('HTTP_AUTHORIZATION')[7:]

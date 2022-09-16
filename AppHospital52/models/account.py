@@ -1,9 +1,6 @@
 from django.db import models
-from .user import User
 
-class Account(models.Model):
-    id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, related_name='account', on_delete=models.CASCADE)
-    balance = models.IntegerField(default=0)
-    lastChangeDate = models.DateTimeField()
+class Perfil(models.Model):
+    id_perfil = models.AutoField(primary_key=True)
+    nombre = models.CharField('Nombre', max_length = 30)
     isActive = models.BooleanField(default=True)
