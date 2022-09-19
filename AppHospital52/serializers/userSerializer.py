@@ -10,10 +10,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['username', 'password', 'nombre', 'apellido', 'telefono', 'genero','id_perfil']
 
     def create(self, validated_data):
-        #accountData = validated_data('account')
         userInstance = User.objects.create(**validated_data)
         Perfil.objects.create(user=userInstance)
-        #Perfil.objects.create(user=userInstance, **accountData)
         return userInstance
 
 

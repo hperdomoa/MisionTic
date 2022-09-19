@@ -22,3 +22,6 @@ class UserDetailView(generics.RetrieveAPIView):
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
 
         return super().get(request, *args, **kwargs)
+
+
+   

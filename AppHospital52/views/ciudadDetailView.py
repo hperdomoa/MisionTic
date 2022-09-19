@@ -1,6 +1,7 @@
 from urllib import request
 from rest_framework import status, views
 from rest_framework.response import Response
+from AppHospital52.models import Ciudad
 from AppHospital52.serializers.ciudadSerializer import CiudadSerializer
 
 class GestionCiudad(views.APIView):
@@ -11,7 +12,10 @@ class GestionCiudad(views.APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    
+    def get(self, request, format=None):
+        serializer = Ciudad.objects.all()
+        serializerR = CiudadSerializer(serializer, many=True)
+        return Response(serializerR.data)
 
 
 
