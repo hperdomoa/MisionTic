@@ -2,6 +2,7 @@ from urllib import request
 from rest_framework import status, views
 from rest_framework.response import Response
 from AppHospital52.models import Ciudad
+from django.http import Http404
 from AppHospital52.serializers.ciudadSerializer import CiudadSerializer
 
 class GestionCiudad(views.APIView):
@@ -18,14 +19,30 @@ class GestionCiudad(views.APIView):
         return Response(serializerR.data)
 
 
-
-    #def get(self, request, *args, **kwargs):
-        #token = request.META.get('HTTP_AUTHORIZATION')[7:]
-        #tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
-        #valid_data = tokenBackend.decode(token,verify=False)
-
-        #if valid_data['user_id'] != kwargs['pk']:
-         #   stringResponse = {'detail':'Unauthorized Request'}
-          #  return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
-
-      #  return super().get(request, *args, **kwargs)
+class GestionDetailCiudad(views.APIView):
+    
+    '''Consulta Errada'''
+    
+    def get_object(self, pk):
+        try:
+            return Ciudad.objects.get(pk=pk)
+        except Ciudad.DoesNotExist:
+            raise Http404
+    '''Consulta Por Id Valida'''
+    def get(self, request, pk, format=None):
+        Ciudad = self.get_object(pk)
+        serializer = CiudadSerializer(Ciudad)
+        return Response(serializer.data)
+    '''Actualizar por Id'''
+    def put(self, request, pk, format=None):
+        Ciudad = self.get_object(pk)
+        serializer = CiudadSerializer(Ciudad, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    '''Borrar por Id'''
+    def delete(self, request, pk, format=None):
+        Ciudad = self.get_object(pk)
+        Ciudad.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

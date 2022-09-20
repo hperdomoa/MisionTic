@@ -5,5 +5,5 @@ from AppHospital52.models.familiar import Familiar
 class FamiliarSerializer (serializers.ModelSerializer):
     class Meta:
         model= Familiar
-        field=['username','id_paciente','parentesco','correo' ]
+        field=['id_familiar','username','id_paciente','parentesco','correo' ]
 

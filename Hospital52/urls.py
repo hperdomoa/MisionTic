@@ -20,17 +20,31 @@ from AppHospital52 import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/', views.GestionPerfil.as_view()),
     path('login/', TokenObtainPairView.as_view()),
     path('refresh/', TokenRefreshView.as_view()),
+    
     path('user/', views.UserCreateView.as_view()),
     path('userd/', views.UserDetailView.as_view()),
-    path('ciudad/', views.GestionCiudad.as_view()),
-    path('paciente/', views.GestionPaciente.as_view()),
-    path('paciente/<int:pk>/', views.GestionPaciente.as_view()),
-    path('familiar/', views.GestionFamiliar.as_view()),
+    
+    path('account/', views.GestionPerfil.as_view()),
+    path('account/<int:pk>/', views.GestionDetailPerfil.as_view()),
+    
     path('persalud/', views.GestionPerSalud.as_view()),
+    path('persalud/<int:pk>/', views.GestionDetailPersonalSalud.as_view()),
+    
+    path('ciudad/', views.GestionCiudad.as_view()),
+    path('ciudad/<int:pk>/', views.GestionDetailCiudad.as_view()),
+    
+    path('paciente/', views.GestionPaciente.as_view()),
+    path('paciente/<int:pk>/', views.GestionDetailPaciente.as_view()),
+   
     path('hisclinica/', views.GestionHisClinica.as_view()),
+    path('hisclinica/<int:pk>/', views.GestionDetailHisClinica.as_view()),
+
+    path('sigvitales/', views.GestionSignosVitales.as_view()),
+    path('sigvitales/<int:pk>/', views.GestionDetailSignosVitales.as_view()),
+
+     path('familiar/', views.GestionFamiliar.as_view()),
 
 
     

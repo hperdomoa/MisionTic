@@ -17,7 +17,4 @@ class UserCreateView(views.APIView):
             return Response(tokenSerializer.validated_data, status=status.HTTP_201_CREATED)
 
 
-        def get(self, request, format=None):
-            serializer = User.objects.all()
-            serializerR = UserSerializer(serializer, many=True)
-            return Response(serializerR.data)
+        

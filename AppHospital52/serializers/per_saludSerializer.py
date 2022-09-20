@@ -5,5 +5,5 @@ from AppHospital52.models.per_salud import PersonalSalud
 class PersonalSaludSerializer (serializers.ModelSerializer):
     class Meta:
         model= PersonalSalud
-        fields =['username','rol','especialidad']
+        fields =['id_per_salud','username','rol','especialidad']
 

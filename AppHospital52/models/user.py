@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.contrib.auth.hashers import make_password
 
 class UserManager(BaseUserManager):
-    def create_user(self, username, password=None):
+    def create_user(self,id, username, password=None):
         if not username:
             raise ValueError('Deben tener nombre de User')
         user = self.model(username=username)
@@ -13,18 +13,14 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, password):
-        user = self.create_user(
-        username=username,
-        password=password,
-        
-
-        )
-        #user.is_staff = True
+        user = self.create_user(username=username, password=password)
+        user.is_staff = True
         user.is_superuser = True
         user.save(using=self._db)
         return user
 
 class User(AbstractBaseUser, PermissionsMixin):
+    id = models.IntegerField()
     username = models.CharField(primary_key=True, max_length = 15, unique=True)
     password = models.CharField('Password', max_length = 256)
     nombre = models.CharField('Nombre', max_length = 30)
@@ -37,6 +33,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         some_salt = 'mMUj0DrIK6vgtdIYepkIxN'
         self.password = make_password(self.password, some_salt)
         super().save(**kwargs)
-        
-    objects = UserManager()
+    
     USERNAME_FIELD = 'username'
+
+    @property
+    def is_staff(self):
+        return self.is_admin
+
+    objects = UserManager()
+   
